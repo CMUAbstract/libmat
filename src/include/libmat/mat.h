@@ -69,11 +69,7 @@ typedef struct {
 
 #define MAT_COPY(src, dest) (mat_copy(src, dest))
 
-#ifdef CONFIG_CONSOLE
-	#define MAT_DUMP(m, w) (mat_dump(m, w))
-#else
-	#define MAT_DUMP(m, w) (void)(0)
-#endif
+#define MAT_DUMP(m, w) (mat_dump(m, w))
 
 #define MAT_DEBUG_DUMP(m, v, d) (mat_debug_dump(m, v, d))
 
