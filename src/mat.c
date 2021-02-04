@@ -1,12 +1,12 @@
 #include <string.h>
-#ifndef CONFIG_RISCV
-#include <libio/console.h>
-#else
-#include <libfemto/femto.h>
-#define PRINTF(...) printf(__VA_ARGS__)
-#endif
+//#ifndef CONFIG_RISCV
+//#include <libio/console.h>
+//#else
+//#include <libfemto/femto.h>
+//#define PRINTF(...) printf(__VA_ARGS__)
+//#endif
 
-#include "mat.h"
+#include "libmat/mat.h"
 
 uint16_t _offset_calc(mat_t *m, uint16_t idxs[], uint16_t len) {
 	uint16_t offset = 0;
@@ -96,17 +96,10 @@ void mat_copy(mat_t *src, mat_t *dest) {
 void mat_dump(mat_t *m, uint16_t which) {
 	uint16_t rows = MAT_GET_DIM(m, m->len_dims - 2);
 	uint16_t cols = MAT_GET_DIM(m, m->len_dims - 1);
-	PRINTF("\r\n=====================");
-	PRINTF("\r\nRows: %u\r\n", rows);
-	PRINTF("Cols: %u\r\n", cols);
 	for(uint16_t i = 0; i < rows; i ++) {
 		for(uint16_t j = 0; j < cols; j ++) {
-			PRINTF("%i ", MAT_GET(m, which, i, j));
 		}
-		PRINTF("\r\n");
 	}
-	PRINTF("done ");
-	PRINTF("===================== \r\n");
 }
 
 void mat_debug_dump(mat_t *m, uint16_t which, fixed *dest) {
